@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 32px 16px;
+  }
+  .slide {
+    background: #fff;
+    width: 960px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color: #fff;
+    padding: 28px 40px 22px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+  .header p  { font-size: 13px; color: #a0b4cc; margin-top: 4px; }
+  .body { display: flex; gap: 0; }
+
+  /* COLUMNAS */
+  .col { flex: 1; padding: 28px 32px; }
+  .col:first-child { border-right: 1px solid #e8edf2; }
+
+  .col-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid;
+  }
+  .curiosidades .col-title { color: #2563eb; border-color: #2563eb; }
+  .desafios     .col-title { color: #dc2626; border-color: #dc2626; }
+
+  /* CARDS */
+  .card {
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .curiosidades .card { background: #eff6ff; }
+  .desafios     .card { background: #fef2f2; }
+
+  .icon {
+    font-size: 22px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .card-content {}
+  .card-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .curiosidades .card-label { color: #1d4ed8; }
+  .desafios     .card-label { color: #b91c1c; }
+
+  .card-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2px;
+  }
+  .card-sub {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+  }
+
+  /* MINI BARCHART room_type */
+  .bar-row { margin-bottom: 5px; }
+  .bar-label { font-size: 11px; color: #475569; display: flex; justify-content: space-between; margin-bottom: 2px; }
+  .bar-track { background: #dbeafe; border-radius: 4px; height: 7px; }
+  .bar-fill  { background: #2563eb; border-radius: 4px; height: 7px; }
+
+  /* OUTLIERS mini table */
+  .out-row { display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0; border-bottom: 1px solid #fee2e2; color: #374151; }
+  .out-row:last-child { border-bottom: none; }
+  .out-pct { font-weight: 700; color: #dc2626; }
+  .out-pct.low { color: #16a34a; }
+
+  /* NULOS mini table */
+  .nul-row { display: flex; justify-content: space-between; font-size: 12px; padding: 4px 0; border-bottom: 1px solid #fee2e2; color: #374151; }
+  .nul-row:last-child { border-bottom: none; }
+  .nul-pct { font-weight: 700; }
+  .nul-full { color: #dc2626; }
+  .nul-high { color: #ea580c; }
+  .nul-low  { color: #ca8a04; }
+
+  .footer {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    padding: 12px 40px;
+    font-size: 11px;
+    color: #94a3b8;
+    display: flex;
+    justify-content: space-between;
+  }
+  .stat-strip {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #e8edf2;
+  }
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 16px 8px;
+    border-right: 1px solid #e8edf2;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-size: 22px; font-weight: 800; color: #0f3460; }
+  .stat-lbl { font-size: 11px; color: #64748b; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>AirBnb Buenos Aires — Exploración del dataset</h1>
+    <p>Fuente: Inside AirBnb · Buenos Aires · Snapshot 2026-01-25 &nbsp;·&nbsp; 27.348 listados · 19 variables</p>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat">
+      <div class="stat-num">27.348</div>
+      <div class="stat-lbl">listados totales</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">19</div>
+      <div class="stat-lbl">variables (13 numéricas · 6 categóricas)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-lbl">duplicados</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">13 años</div>
+      <div class="stat-lbl">rango temporal de reseñas</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- CURIOSIDADES -->
+    <div class="col curiosidades">
+      <div class="col-title">Curiosidades</div>
+
+      <!-- Room type -->
+      <div class="card">
+        <div class="icon">🏠</div>
+        <div class="card-content">
+          <div class="card-label">Tipos de alojamiento</div>
+          <div class="card-value">91% son casas/departamentos enteros</div>
+          <div style="margin-top:8px">
+            <div class="bar-row">
+              <div class="bar-label"><span>Entire home/apt</span><span>91.0%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:91%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><span>Private room</span><span>8.2%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:8.2%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><span>Shared room</span><span>0.5%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:0.5%"></div></div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label"><span>Hotel room</span><span>0.3%</span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:0.3%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rango temporal -->
+      <div class="card">
+        <div class="icon">📅</div>
+        <div class="card-content">
+          <div class="card-label">Rango temporal de reseñas</div>
+          <div class="card-value">2013 → 2026 &nbsp;·&nbsp; 4.767 días</div>
+          <div class="card-sub">Primera: 6 ene 2013 &nbsp;·&nbsp; Última: 25 ene 2026</div>
+        </div>
+      </div>
+
+      <!-- Sin disponibilidad -->
+      <div class="card">
+        <div class="icon">📆</div>
+        <div class="card-content">
+          <div class="card-label">Listados sin disponibilidad</div>
+          <div class="card-value">283 listados (1.0%)</div>
+          <div class="card-sub">availability_365 = 0 · probablemente inactivos</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DESAFÍOS -->
+    <div class="col desafios">
+      <div class="col-title">Desafíos</div>
+
+      <!-- Valores nulos -->
+      <div class="card">
+        <div class="icon">⚠️</div>
+        <div class="card-content">
+          <div class="card-label">Valores faltantes</div>
+          <div class="card-value">3 columnas críticas con nulos masivos</div>
+          <div style="margin-top:8px">
+            <div class="nul-row"><span>neighbourhood_group</span><span class="nul-pct nul-full">100%</span></div>
+            <div class="nul-row"><span>price</span><span class="nul-pct nul-full">100%</span></div>
+            <div class="nul-row"><span>license</span><span class="nul-pct nul-high">98.3%</span></div>
+            <div class="nul-row"><span>last_review / reviews_per_month</span><span class="nul-pct nul-low">12.1%</span></div>
+            <div class="nul-row"><span>minimum_nights</span><span class="nul-pct nul-low">0.4%</span></div>
+          </div>
+          <div class="card-sub" style="margin-top:6px">
+            MNAR: neighbourhood_group, price, license<br>
+            MAR: minimum_nights, last_review, reviews_per_month
+          </div>
+        </div>
+      </div>
+
+      <!-- Outliers -->
+      <div class="card">
+        <div class="icon">📊</div>
+        <div class="card-content">
+          <div class="card-label">Outliers (método IQR · columnas relevantes)</div>
+          <div class="card-value">calculated_host_listings_count es el más crítico</div>
+          <div style="margin-top:8px">
+            <div class="out-row"><span>calculated_host_listings_count</span><span class="out-pct">14.9%</span></div>
+            <div class="out-row"><span>minimum_nights</span><span class="out-pct">11.0%</span></div>
+            <div class="out-row"><span>number_of_reviews</span><span class="out-pct">7.2%</span></div>
+            <div class="out-row"><span>number_of_reviews_ltm</span><span class="out-pct">6.5%</span></div>
+            <div class="out-row"><span>reviews_per_month</span><span class="out-pct">3.9%</span></div>
+            <div class="out-row"><span>latitude / longitude</span><span class="out-pct">1.9% / 0.6%</span></div>
+            <div class="out-row"><span>availability_365</span><span class="out-pct low">0.0%</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>CEIA · Análisis de Datos · Trabajo Grupal</span>
+    <span>AirBnb Buenos Aires · 2026-01-25</span>
+  </div>
+
+</div>
+</body>
+</html>

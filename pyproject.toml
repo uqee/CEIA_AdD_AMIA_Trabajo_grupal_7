@@ -8,7 +8,13 @@ dev = [
 ]
 
 [project]
-dependencies = ["pandas>=3.0.2"]
+dependencies = [
+    "contextily>=1.7.0",
+    "matplotlib>=3.10.9",
+    "pandas>=3.0.2",
+    "pyproj>=3.7.2",
+    "seaborn>=0.13.2",
+]
 name = "python"
 requires-python = ">=3.14"
 version = "0.1.0"
