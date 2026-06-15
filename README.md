@@ -7,7 +7,7 @@
 + [GitHub](https://github.com/uqee/CEIA_AdD_AMIA_Trabajo_grupal_7) (this)
 + [WhatsApp](https://chat.whatsapp.com/KB1pzEz2CvS5WyXj07q79r)
 
-## Grupo
+## Grupo 7
 
 + Denis Zhbankov
 + Lautaro Juan Bautista Vera
